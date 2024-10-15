@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Store</string>
+    <string name="sign_up">Signup</string>
+    <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
+    <string name="login_description">Enter your emails and password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="no_account">Don’t have an account?</string>
+    <string name="register_description">Enter your information</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="have_account">Do you have an account?</string>
+    <string name="sign_in">Login</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_personal">Personal</string>
+    <string name="username">Username</string>
+    <string name="title_manage_product">Product</string>
+    <string name="title_manage_financial">Financial</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

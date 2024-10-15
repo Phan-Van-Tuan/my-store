@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_10"
+        tools:context=".ui.detail.DetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/bg_login"
+                android:elevation="10dp"
+                android:src="@drawable/logo_larger"
+                android:stateListAnimator="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_gray"
+                android:padding="10dp"
+                android:src="@drawable/baseline_arrow_back_ios_new_24"
+                android:translationZ="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_add_cart"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@color/primary"
+                android:padding="10dp"
+                android:src="@drawable/baseline_add_shopping_cart_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image" />
+
+            <TextView
+                android:id="@+id/btn_buyNow"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="Mua Ngay"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_add_cart"
+                app:layout_constraintTop_toTopOf="@+id/btn_add_cart" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:maxLines="2"
+                android:text="Product name"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_cart" />
+
+            <TextView
+                android:id="@+id/salePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textColor="@color/red"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@+id/name"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <TextView
+                android:id="@+id/originalPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="0"
+                android:textColor="@color/gray"
+
+                app:layout_constraintBottom_toBottomOf="@+id/salePrice"
+                app:layout_constraintEnd_toStartOf="@+id/discount"
+                app:layout_constraintStart_toEndOf="@+id/salePrice" />
+
+            <TextView
+                android:id="@+id/discount"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/bg_primary"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="0%"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/originalPrice"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_main">
+
+            <TextView
+                android:id="@+id/title_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cửa hàng"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_margin="4dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/store_avatar"
+                app:layout_constraintTop_toBottomOf="@+id/title_store" />
+
+            <ImageView
+                android:id="@+id/icon_location"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/baseline_location_on_24"
+                app:layout_constraintStart_toStartOf="@+id/store_name"
+                app:layout_constraintTop_toBottomOf="@+id/store_name" />
+
+            <TextView
+                android:id="@+id/store_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_location"
+                app:layout_constraintTop_toTopOf="@+id/icon_location" />
+
+
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="Star 1"
+                android:src="@drawable/baseline_star_rate_full_24"
+                app:layout_constraintStart_toStartOf="@+id/icon_location"
+                app:layout_constraintTop_toBottomOf="@+id/icon_location" />
+
+            <TextView
+                android:id="@+id/store_rate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="4.8/5"
+                app:layout_constraintStart_toEndOf="@+id/star"
+                app:layout_constraintTop_toBottomOf="@+id/icon_location" />
+
+            <TextView
+                android:id="@+id/store_count_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="0 sản phẩm"
+                app:layout_constraintStart_toEndOf="@+id/store_rate"
+                app:layout_constraintTop_toTopOf="@+id/store_rate" />
+
+            <ImageView
+                android:id="@+id/store_avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_store"
+                app:srcCompat="@drawable/baseline_account_box_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_store">
+
+            <TextView
+                android:id="@+id/title_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mô tả sản phẩm"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:layout_marginVertical="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_description" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_description">
+
+            <TextView
+                android:id="@+id/title_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đánh giá sản phẩm"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="Star 1"
+                android:src="@drawable/baseline_star_rate_full_24"
+                app:layout_constraintStart_toStartOf="@+id/title_feedback"
+                app:layout_constraintTop_toBottomOf="@+id/title_feedback" />
+
+            <TextView
+                android:id="@+id/product_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/star1"
+                app:layout_constraintStart_toEndOf="@+id/star1" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_feedbacks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/star1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

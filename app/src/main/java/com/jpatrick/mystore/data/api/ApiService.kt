@@ -6,16 +6,19 @@ import com.jpatrick.mystore.data.model.dto.RegisterDto
 import com.jpatrick.mystore.data.model.User
 import com.jpatrick.mystore.data.model.Product
 import com.jpatrick.mystore.data.model.ApiResponse
-import com.jpatrick.mystore.data.model.Cart
+import com.jpatrick.mystore.data.model.Order
 import com.jpatrick.mystore.data.model.dto.CartDto
+import com.jpatrick.mystore.data.model.dto.CreateProductDto
 import com.jpatrick.mystore.data.model.dto.LoggedDto
 import com.jpatrick.mystore.data.model.dto.RefreshToken
-import com.jpatrick.mystore.data.model.dto.UpdateProductToCart
+import com.jpatrick.mystore.data.model.dto.ProductIdAndQuantity
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Header
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -42,7 +45,7 @@ interface ApiService {
     @POST("cart/")
     suspend fun updateProductToCart(
         @Header("Authorization") authHeader: String,
-        @Body data: UpdateProductToCart // Đối tượng chứa productId và quantity
+        @Body data: ProductIdAndQuantity // Đối tượng chứa productId và quantity
     ): Response<ApiResponse<List<CartDto>>>
 
     // Get a list of products
@@ -58,21 +61,35 @@ interface ApiService {
         @Path("id") productId: String
     ): Response<ApiResponse<DetailProductDto>>
 
+    @GET("product/get-by-store-id/{id}")
+    suspend fun getProductByStoreId(@Path("id") storeId: String): Response<ApiResponse<List<Product>>>
+
+    @DELETE("product/{storeId}/{productId}")
+    suspend fun deleteProduct(
+        @Header("Authorization") authHeader: String,
+        @Path("storeId") storeId: String,
+        @Path("productId") productId: String
+    ): Response<ApiResponse<List<Product>>>
+
+
     // Create a new product (admin functionality)
-    @POST("products")
+    @POST("product")
     suspend fun createProduct(
-        @Body product: Product
-    ): Response<Product>
+        @Header("Authorization") authHeader: String,
+        @Body product: CreateProductDto
+    ): Response<ApiResponse<List<Product>>>
 
-    // Get user details
-    @GET("users/{id}")
-    suspend fun getUserById(
-        @Path("id") userId: Int
-    ): Response<User>
+    @PUT("product/{id}")
+    suspend fun updateProduct(
+        @Header("Authorization") authHeader: String,
+        @Path("id") productId: String,
+        @Body data: Product // Đối tượng chứa productId và quantity
+    ): Response<ApiResponse<List<Product>>>
 
-    // Create a new user
-    @POST("users")
-    suspend fun createUser(
-        @Body user: User
-    ): Response<User>
+
+    @POST("order")
+    suspend fun createOrder(
+        @Header("Authorization") authHeader: String,
+        @Body order: Order
+    ): Response<ApiResponse<Order>>
 }

@@ -21,8 +21,10 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="130dp"
         android:paddingVertical="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_title_1">
@@ -30,13 +32,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_cart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_pay"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="82dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,30 +61,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/title_total"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingVertical="10dp"
-            android:text="Tổng :"
-            app:layout_constraintEnd_toStartOf="@+id/total"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Tông"
+            app:layout_constraintEnd_toStartOf="@+id/pay"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:text="0"
-            app:cardElevation="4dp"
+            android:textColor="@color/primary"
+            android:textSize="18dp"
             app:layout_constraintEnd_toStartOf="@+id/pay"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/title_total" />
 
         <TextView
             android:id="@+id/pay"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:padding="10dp"
-            android:text="Thanh Toán"
-            android:background="@color/red"
+            android:text="Đặt hàng"
+            android:background="@color/primary"
             android:textColor="@color/white"
             android:gravity="center"
             android:textStyle="bold"

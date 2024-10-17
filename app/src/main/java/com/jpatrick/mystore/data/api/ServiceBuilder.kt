@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 object ServiceBuilder {
 
     // Base URL của API
-    private const val BASE_URL = "http://192.168.207.1:3003/api/v1/"
+    private const val BASE_URL = "http://192.168.1.19:3003/api/v1/"
 
     // Tạo HttpLoggingInterceptor để log các request/response
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

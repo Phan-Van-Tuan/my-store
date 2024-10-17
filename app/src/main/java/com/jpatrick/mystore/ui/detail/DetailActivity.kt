@@ -1,13 +1,12 @@
 package com.jpatrick.mystore.ui.detail
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jpatrick.mystore.data.model.Feedback
-import com.jpatrick.mystore.data.model.dto.UpdateProductToCart
+import com.jpatrick.mystore.data.model.dto.ProductIdAndQuantity
 import com.jpatrick.mystore.databinding.ActivityDetailBinding
 import com.jpatrick.mystore.utils.LoadFormat
 
@@ -51,7 +50,7 @@ class DetailActivity : AppCompatActivity() {
         if (productId != null) {
             detailViewModel.fetchData(productId, false)
             binding.btnAddCart.setOnClickListener {
-                detailViewModel.updateProductToCart(UpdateProductToCart(productId, 1), this)
+                detailViewModel.updateProductToCart(ProductIdAndQuantity(productId, 1), this)
             }
         } else {
             Toast.makeText(this, "Lỗi không lấy đc id sản phẩm", Toast.LENGTH_SHORT).show()

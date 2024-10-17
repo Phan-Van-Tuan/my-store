@@ -30,7 +30,7 @@ class HomeAdapter(
             loadFormat.loadImage(product.image, productImage)
             loadFormat.loadCurrency(product.price, productPrice)
             productName.text = product.name
-            productSold.text = "Đã bán: ${product.sold}   Còn: ${product.quantity}"
+            productSold.text = "Đã bán: ${product.sold}   Còn: ${product.quantity.toInt() - product.sold.toInt()}"
 //            productRate.text = product.rate.toString()
             // Thiết lập sự kiện click cho item
             itemView.setOnClickListener {

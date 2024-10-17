@@ -11,12 +11,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.jpatrick.mystore.R
 import com.jpatrick.mystore.data.model.dto.CartDto
-import com.jpatrick.mystore.data.model.dto.UpdateProductToCart
+import com.jpatrick.mystore.data.model.dto.ProductIdAndQuantity
 import com.jpatrick.mystore.databinding.FragmentCartBinding
 import com.jpatrick.mystore.ui.account.SignInActivity
 import com.jpatrick.mystore.ui.detail.DetailActivity
+import com.jpatrick.mystore.ui.order.OrderActivity
 import com.jpatrick.mystore.utils.LoadFormat
 
 class CartFragment : Fragment() {
@@ -70,7 +72,7 @@ class CartFragment : Fragment() {
                         },
                         deleteCart = { productId ->
                             showRemoveConfirmationDialog {
-                                cartViewModel.updateProductToCart(UpdateProductToCart(productId, 0))
+                                cartViewModel.updateProductToCart(ProductIdAndQuantity(productId, 0))
                             }
                         },
                         onItemCheckedChange = {
@@ -93,9 +95,27 @@ class CartFragment : Fragment() {
                     }
                 }
 
-// Gọi API lấy dữ liệu giỏ hàng
+                // Gọi API lấy dữ liệu giỏ hàng
                 cartViewModel.fetchData(false)
             }
+        }
+
+
+        binding.pay.setOnClickListener {
+            val listOrder = listProduct.filter { item -> item.isChecked }
+            if (listOrder.isNotEmpty()) {
+                val intent = Intent(requireActivity(), OrderActivity::class.java)
+                val jsonProductList = Gson().toJson(listOrder)
+                intent.putExtra("product_list", jsonProductList)
+                startActivity(intent)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Bạn chưa chọn sản phẩn nào",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            return@setOnClickListener
         }
 
         // Cấu hình pull-to-refresh
@@ -113,7 +133,7 @@ class CartFragment : Fragment() {
         _binding = null
     }
 
-    private fun showRemoveConfirmationDialog( onConfirm: () -> Unit) {
+    private fun showRemoveConfirmationDialog(onConfirm: () -> Unit) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Xác nhận")
         builder.setMessage("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng không?")
@@ -132,8 +152,10 @@ class CartFragment : Fragment() {
         dialog.show() // Hiển thị dialog
 
         // Tùy chỉnh màu sắc cho nút
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow))
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            .setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            .setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow))
     }
 
     private fun updateTotalAmount() {

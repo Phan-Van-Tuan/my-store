@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import com.jpatrick.mystore.R
 import com.jpatrick.mystore.StoreActivity
 import com.jpatrick.mystore.databinding.FragmentPersonalBinding
 import com.jpatrick.mystore.ui.account.SignInActivity
+import com.jpatrick.mystore.ui.order.OrderFragment
 import com.jpatrick.mystore.utils.LoadFormat
 
 class PersonalFragment : Fragment() {
@@ -30,6 +32,14 @@ class PersonalFragment : Fragment() {
         _binding = FragmentPersonalBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.personalOrder.setOnClickListener{
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+
+            // Thay thế Fragment A bằng Fragment B
+            transaction.replace(R.id.container, OrderFragment())
+            transaction.addToBackStack(null) // Thêm vào back stack nếu bạn muốn quay lại Fragment A
+            transaction.commit()
+        }
         personalViewModel.loginRequired.observe(viewLifecycleOwner) {
             if (it) {
                 // Điều hướng người dùng đến màn hình đăng nhập

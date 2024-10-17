@@ -6,9 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jpatrick.mystore.data.model.Product
 import com.jpatrick.mystore.data.model.dto.CartDto
-import com.jpatrick.mystore.data.model.dto.UpdateProductToCart
+import com.jpatrick.mystore.data.model.dto.ProductIdAndQuantity
 import com.jpatrick.mystore.data.source.local.AuthRepository
 import com.jpatrick.mystore.data.source.remote.CartRemote
 import kotlinx.coroutines.launch
@@ -52,7 +51,7 @@ class CartViewModel(val context: Context) : ViewModel() {
     }
 
 
-    fun updateProductToCart(data: UpdateProductToCart) {
+    fun updateProductToCart(data: ProductIdAndQuantity) {
         viewModelScope.launch {
             val accessToken = "Bearer ${authRepo.getToken()?.accessToken}"
             val result = cartRemote.updateProductToCart(accessToken, data)
